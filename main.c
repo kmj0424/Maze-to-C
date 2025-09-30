@@ -85,28 +85,38 @@ int	ft_exit(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	char	**file;
-	int		file_len;
+	// char	**file;
+	// int		file_len;
 
-	if (argc != 2)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	file = ft_split(argv[1], '/');
-	file_len = file_check(file);
-	if ((strcmp(strrchr(file[file_len], '.'), ".ber") != 0) \
-			|| strlen(file[file_len]) < 5)
-	{
-		free_char(file);
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	free_char(file);
+	// if (argc != 2)
+	// {
+	// 	write(1, "Error\n", 6);
+	// 	return (1);
+	// }
+	// file = ft_split(argv[1], '/');
+	// file_len = file_check(file);
+	// if ((strcmp(strrchr(file[file_len], '.'), ".ber") != 0) \
+	// 		|| strlen(file[file_len]) < 5)
+	// {
+	// 	free_char(file);
+	// 	write(1, "Error\n", 6);
+	// 	return (1);
+	// }
+	// free_char(file);
+	int i;
+	printf("(1)easy, (2) normal, (3)hard\n");
+	scanf("%d", &i);
+	if (i == 1)
+		argv[1] = "./map/easy.ber";
+	else if (i == 2)
+		argv[1] = "./map/normal.ber";
+	else
+		argv[1] = "./map/hard.ber";
 	memset(&game, 0, sizeof(t_game));
 	map(&game, argv[1]);
 	draw(&game);
 	mlx_key_hook(game.win_ptr, func, &game);
+	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0L, ft_exit, &game);
 	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0L, ft_exit, &game);
 	mlx_loop(game.mlx_ptr);
 }
