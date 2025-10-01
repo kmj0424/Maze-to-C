@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static int	ft_count(long long n) //글자수 세는 함수
+static int	ft_count(long long n)
 {
 	long long	i;
 
@@ -16,7 +16,7 @@ static int	ft_count(long long n) //글자수 세는 함수
 }
 
 static char	*ft_while(long long real,
-				char *temp, long long i, long long sign) //반복문
+				char *temp, long long i, long long sign)
 {
 	temp[i] = '\0';
 	while (--i > 0)
